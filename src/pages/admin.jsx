@@ -2,15 +2,26 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { getMonthNumber } from "utils/getMonthNumber";
 import api from '../api.js'
+import { useDispatch } from "react-redux";
+import { useAuth } from "hooks/useAuth.js";
+import { refreshUser } from "../redux/auth/operations.js";
 //add axios baseURL (done) (in a api.js file)
 // add edit/delete poetry 
 //add inbox 
 //add loginization
 
 const AdminPage = () => {
+
+    const dispatch = useDispatch();
+    const { isRefreshing } = useAuth();
+
+    useEffect(() => {
+        dispatch(refreshUser());
+    }, [dispatch]);
+
     const [stats, setStats] = useState({})
     const [inbox, setInbox] = useState(null)
-    const [poetryList, setPoetryList] = useState([])
+    const [poetryList, setPoetryList] = useState(null)
 
     //////////////// POETRY ADDING FORM ///////////////////
     const [currentPage, setCurrentPage] = useState('')
@@ -34,6 +45,7 @@ const AdminPage = () => {
     const [blogTitle, setBlogTitle] = useState('')
     /////////// BLOG FORM ///////////////
 
+    const [deleteConfirmation, setDeleteConfirmation] = useState(false)
 
     const date = new Date()
     const currentMonth = date.getMonth() + 1
@@ -58,6 +70,8 @@ const AdminPage = () => {
         const monthNumber = getMonthNumber(monthName)
         console.log(monthNumber)
         api.getVisitData(monthNumber).then(res => {
+            console.log(res)
+
             setStats(res.data)
         })
         return
@@ -182,9 +196,9 @@ const AdminPage = () => {
 
     }
 
-    const handlePoetryFetch = e => {
-        const poetry = api.getPoetry()
-        setPoetryList(poetry)
+    const handlePoetryFetch = async e => {
+        const poetry = await api.getPoetry({ page: 0, limit: 100 })
+        setPoetryList(poetry.data)
 
     }
 
@@ -197,7 +211,28 @@ const AdminPage = () => {
         console.log(poetryId)
     }
 
-    return (<>
+    const handlePoetryEditBtnClick = id => {
+        const found = poetryList.find(({ poetryId }) => poetryId === id)
+        if (!found) {
+            return
+        }
+        setAbout(found.about)
+        setPreview(found.coverUrl)
+        setPageList(found.pages)
+        setTitle(found.name)
+    }
+
+    const handlePoetryDeleteBtnClick = e => {
+        setDeleteConfirmation(true)
+    }
+
+    const handleSubmitPoetryDelete = e => {
+
+    }
+
+    return isRefreshing ? (
+        <b>Refreshing user...</b>
+    ) : (<>
         <div>
             <div>
                 <h1>Statistics</h1>
@@ -230,13 +265,21 @@ const AdminPage = () => {
                     </div>
                 </div>
             </div>
+            {/* ////////////////////// poetry fetch ///////////////////// */}
             <div>
                 <button type="button" onClick={handlePoetryFetch}>fetch</button>
                 <ul>
-                    {poetryList && poetryList.map(poetry => {
-                        return (<li key={poetry.poetryId}>{poetry.name}</li>)
+                    {poetryList && poetryList.map((poetry, i) => {
+                        return (<li key={poetry.poetryId}>
+                            <div>
+                                <span>{poetry.name}</span>
+                                <button type="button" onClick={() => handlePoetryEditBtnClick(poetry.poetryId)}>edit</button>
+                                <button type="button" onClick={handlePoetryDeleteBtnClick}>delete</button>
+                            </div>
+                        </li>)
                     })}
                 </ul>
+                {deleteConfirmation && <div><span>are u sure?</span> <button type="button">delete</button></div>}
             </div>
             {/* //////////////// add poetry form /////////////////////// */}
             <div>

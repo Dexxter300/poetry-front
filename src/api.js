@@ -92,9 +92,9 @@ const sendVisit = async () => {
     }
 }
 
-const sendFeedback = async () => {
+const sendFeedback = async ({ email, message }) => {
     try {
-        const res = await axios.post('/feedback')
+        const res = await axios.post('/feedback', { email, body: message })
         return res
     } catch (error) {
         console.log(error)
@@ -133,9 +133,9 @@ const postImgToCloudinary = async (url, formData) => {
     }
 }
 
-const getPoetry = async () => {
+const getPoetry = async ({ page = 0, limit = 100 }) => {
     try {
-        const res = await axios.get("/poetry")
+        const res = await axios.get(`/poetry?page=${page}&limit=${limit}`)
         return res
     } catch (error) {
         console.log(error)
@@ -143,4 +143,41 @@ const getPoetry = async () => {
     }
 }
 
-export default { getVisitData, getInbox, sendVisit, sendFeedback, postBlog, getCoverUploadUrl, postImgToCloudinary, addPoetry, getPoetry }
+const getCurrent = async (token) => {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    try {
+        const res = await axios.get('/auth/current')
+        return res
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+const getBlog = async ({ page = 0, limit = 100 }) => {
+    try {
+        // const res = await axios.get('/blog', {
+        //     headers: {
+        //         page,
+        //         limit
+        //     }
+        // })
+        const res = await axios.get(`/blog?page=${page}&limit=${limit}`)
+        return res
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+const getBlogById = async ({ postId }) => {
+    try {
+        const res = await axios.get(`/blog/post/${postId}`)
+        return res
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+export default { getVisitData, getInbox, sendVisit, sendFeedback, postBlog, getCoverUploadUrl, postImgToCloudinary, addPoetry, getPoetry, signIn, getCurrent, getBlog, getBlogById }
