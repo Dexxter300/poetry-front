@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import api from "api"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 const BlogPostPage = () => {
     const { postId } = useParams()
@@ -22,6 +22,7 @@ const BlogPostPage = () => {
         })
     }, [])
     return (<div>
+        <Link to='/blog'>go back</Link>
         <h1>{blogTitle}</h1>
         <p>
             {blogBody}

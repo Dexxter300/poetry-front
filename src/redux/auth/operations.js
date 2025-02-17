@@ -7,6 +7,7 @@ import api from 'api';
 // Utility to add JWT
 const setAuthHeader = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    localStorage.setItem('token', token)
 };
 
 // Utility to remove JWT

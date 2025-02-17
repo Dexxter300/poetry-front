@@ -1,15 +1,69 @@
-@import-normalize; /* bring in normalize.css styles */
+ @import-normalize; /*bring in normalize.css styles */
+/* @import "tailwindcss"; */
+
+/* @import 'node_modules/modern-normalize/modern-normalize.css'; */
+
+:root {
+  --color-primary-red: #710000;
+  --color-primary-black: #050505;
+  --color-primary-white: #f7e7ce;
+  --color-primary-black-2: #0f0f0f;
+  --color-second-red: #800000;
+  --color-primary-grey: #b6b6b6;
+  --color-primary-green-lite: #e3ffa8;
+  --secondary-color-grey: #292928;
+  --secondary-color-pink: #ffc4f7;
+  --secondary-color-yellow: #fff3b7;
+  --add-water-button-color: #e3ffa8;
+
+}
 
 body {
+  background-color: var(--color-primary-grey);
+  overflow-y: scroll;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+  user-select: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+img {
+  display: block;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
 }
