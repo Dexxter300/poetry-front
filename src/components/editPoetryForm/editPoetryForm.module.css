@@ -1,4 +1,8 @@
 .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 30px;
     padding-top: 20px;
     padding-left: 30px;
     padding-bottom: 10px;
@@ -55,4 +59,59 @@
     width: 50%;
     border: 1px solid grey;
     border-radius: 5px;
+}
+
+.ul {
+    min-height: 70%;
+    max-height: 70%;
+    overflow-y: auto;
+    width: 300px;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.li {
+    background-color: rgb(243, 243, 243);
+    padding-top: 5px;
+    padding-left: 3px;
+    padding-bottom: 5px;
+    padding-right: 3px;
+    margin-bottom: 10px;
+    border: 1px solid grey
+}
+
+.liCard {
+    display: flex;
+    justify-content: space-between;
+}
+
+.controls {
+    display: flex;
+    gap: 5px;
+}
+
+.editBtn {
+    border: 0px;
+    background-color: yellow;
+    height: 30px;
+    width: 60px;
+}
+
+.editBtn:hover {
+
+}
+
+
+
+.deleteBtn {
+    border: 0px;
+    background-color: red;
+        height: 30px;
+            width: 60px;
+}
+
+.deleteBtn:hover {
+
 }

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import api from "api"
 import css from './addPoetryForm.module.css'
 
@@ -10,6 +10,12 @@ const AddPoetryForm = () => {
     const [about, setAbout] = useState('')
     const [tag, setTag] = useState(null)
 
+
+    const [animate, setAnimate] = useState(false);
+    
+    useEffect(() => {
+        setAnimate(true);
+    }, []); // Runs only on mount
 
     const handlePdfUpload = async () => {
 
@@ -106,22 +112,23 @@ const AddPoetryForm = () => {
     }
 
     return ( 
-        <div className={css.container}>
+        <div className={`${css.container} ${css.fadeIn}`}>
+            <div className={css.formCover}>
                 <form action="" onSubmit={handleAddPoetry} className={css.form}>
-                    <label>
-                        <span>name</span>
-                        <input name="title" value={title} onChange={handleTitleChange} />
+                    <label className={css.label}>
+                        <span>Title</span>
+                        <input className={css.titleInput} name="title" value={title} onChange={handleTitleChange} />
                     </label>
-                    <label htmlFor="">
-                        <span>about</span>
-                        <textarea name="about" rows='10' value={about} onChange={handleAboutChange} />
+                    <label className={css.label}>
+                        <span>About</span>
+                        <textarea className={css.textarea} name="about" rows='10' value={about} onChange={handleAboutChange} />
                     </label>
-                    <label>
+                    <label className={css.label}>
                         <span>cover</span>
                         <input type="file" onChange={handleFileChange} />
                         {preview && <img src={preview} alt="Preview" style={{ width: "200px", margin: "10px 0" }} />}
                     </label>
-                    <label>
+                    <label className={css.label}>
                         <span>file</span>
                         <input type="file" onChange={handlePdfChange} />
                     </label>
@@ -142,6 +149,7 @@ const AddPoetryForm = () => {
                         return (<li key={index}>{page.title} | Page-{index + 1}</li>)
                     })}
                 </ul> */}
+                </div>
             </div>
     )
 }

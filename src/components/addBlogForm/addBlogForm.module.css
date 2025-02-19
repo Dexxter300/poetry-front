@@ -1,7 +1,31 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 1s ease-out forwards;
+}
+
 .container {
     padding-top: 20px;
     padding-left: 30px;
     padding-bottom: 10px;
+}
+
+.formCover {
+    background-color: white;
+    padding: 10px;
+    width: 50%;
+    border: 1px solid grey;
+    border-radius: 5px;
 }
 
 .form {
@@ -29,30 +53,4 @@
     height: 25px;
     font-size: large;
     font-weight: 600;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-
-.fadeIn {
-    animation: fadeIn 0.5s ease-out forwards;
-}
-
-.formCover {
-    background-color: white;
-    padding: 10px;
-    width: 50%;
-    border: 1px solid grey;
-    border-radius: 5px;
 }

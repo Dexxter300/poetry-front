@@ -5,6 +5,7 @@ import api from '../api.js'
 import { useDispatch } from "react-redux";
 import { useAuth } from "hooks/useAuth.js";
 import { refreshUser } from "../redux/auth/operations.js";
+import css from './admin.module.css'
 
 import AddPoetryForm from "components/addPoetryForm/AddPoetryForm.jsx";
 import EditPoetryForm from "components/editPoetryForm/EditPoetryForm.jsx";
@@ -129,29 +130,29 @@ const AdminPage = () => {
             </div>
             
                 {/* //////////////// add poetry form /////////////////////// */}
-                <div>
-                    <button onClick={handlePoetryAddToggle}>Poetry Add</button>
-                    {isPoetryAddVisible && <AddPoetryForm/> }
+                <div className={css.btnContainer}>
+                    <button className={`${css.btn} ${isPoetryAddVisible ? css.btnActive : ''}`} onClick={handlePoetryAddToggle}>Poetry Add</button>
+                    {isPoetryAddVisible && <AddPoetryForm/>}
                 </div>
 
                 {/* ////////////////////////// edit poetry form ////////////////////// */}
-                <div>
-                    <button onClick={handlePoetryEditToggle}>Poetry Edit</button>
+                <div className={css.btnContainer}>
+                    <button className={`${css.btn} ${isPoetryEditVisible ? css.btnActive : ''}`} onClick={handlePoetryEditToggle}>Poetry Edit</button>
                     {isPoetryEditVisible && <EditPoetryForm/>}
                 </div>
                 {/* //////////////////// inbox ///////////////// */}
-                <div>
-                    <button onClick={handleInboxToggle}>Inbox</button>
+                <div className={css.btnContainer}>
+                    <button className={`${css.btn} ${isInboxVisible ? css.btnActive : ''}`} onClick={handleInboxToggle}>Inbox</button>
                     {isInboxVisible && <Inbox/>}
                 </div>
             {/*//////////////////////// blog form ///////////////////////*/}
-                <div>
-                    <button onClick={handleBlogAddToggle}>Add Blog</button>
+                <div className={css.btnContainer}>
+                    <button className={`${css.btn} ${isBlogAddVisible ? css.btnActive : ''}`} onClick={handleBlogAddToggle}>Add Blog</button>
                     {isBlogAddVisible && <AddBlogForm/>}
                 </div>
                 {/* ///////////////////// blog edit form ////////////////////// */}
-                <div>
-                    <button onClick={handleBlogEditToggle}>edit blog</button>
+                <div className={css.btnContainer}>
+                    <button className={`${css.btn} ${isBlogEditVisible ? css.btnActive : ''}`} onClick={handleBlogEditToggle}>edit blog</button>
                     {isBlogEditVisible && <EditBlogForm/>}
                 </div>
         </div>

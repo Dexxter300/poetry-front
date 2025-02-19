@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "api";
+import css from './addBlogForm.module.css'
 
 const AddBlogForm = () => {
     const [title, setTitle] = useState('')
@@ -21,19 +22,20 @@ const AddBlogForm = () => {
     }
 
     return (
-        <div>
-            <h2>blog</h2>
-            <form onSubmit={handleAddBlogPost}>
-                <label>
+        <div className={`${css.container} ${css.fadeIn}`}>
+            <div className={css.formCover}>
+            <form className={css.form} onSubmit={handleAddBlogPost}>
+                <label className={css.label}>
                     <span>title</span>
-                    <input type="text" value={title} onChange={handleBlogTitleChange} />
+                    <input className={css.titleInput} type="text" value={title} onChange={handleBlogTitleChange} />
                 </label>
-                <label>
+                <label className={css.label}>
                     <span>text</span>
-                    <input type="text" value={body} onChange={handleBlogBodyChange} />
+                    <input className={css.textarea} type="text" value={body} onChange={handleBlogBodyChange} />
                 </label>
                 <button type="submit">post</button>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }

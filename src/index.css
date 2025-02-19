@@ -19,7 +19,7 @@
 }
 
 body {
-  background-color: var(--color-primary-grey);
+  background-color: white;
   overflow-y: scroll;
   margin: 0;
   width: 100%;

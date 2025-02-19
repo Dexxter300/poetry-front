@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "api";
+import css from './editBlogForm.module.css'
 
 const EditBlogForm = () => {
     const [blogList, setBlogList] = useState([])
@@ -53,30 +54,36 @@ const EditBlogForm = () => {
     }
 
     return (
-        <div>
+        <div className={`${css.fadeIn} ${css.container}`}>
+            <div className={css.formCover}>
+           <form className={css.form} onSubmit={handleSubmitBlogEdit}>
+                <label className={css.label}>
+                    <span>title</span>
+                    <input className={css.titleInput} type="text" name="title" value={title} onChange={handleTitleChange}/>
+                </label>
+                <label className={css.label}>
+                    <span>Body</span>
+                    <textarea className={css.textarea} value={body} onChange={handleBodyChange}/>
+                    </label>
+                    <button type="submit">edit</button>
+                </form>
+            </div>
             <div>
-                <ul>
+                <ul className={css.ul}>
                     {blogList && blogList.map((blog, i) => {
-                        return (<li key={blog.postId}>
-                            <div>
+                        return (<li className={css.li} key={blog.postId}>
+                            <div className={css.liCard}>
                                 <span>{blog.title}</span>
-                                <button type="button" onClick={() => handleBlogEditBtnClick(blog.postId)}>edit</button>
-                                <button type="button" onClick={() => handleBlogDeleteBtnClick(blog.postId)}>delete</button>
+                                <div className={css.controls}>
+                                    <button className={css.editBtn} type="button" onClick={() => handleBlogEditBtnClick(blog.postId)}>edit</button>
+                                    <button className={css.deleteBtn} type="button" onClick={() => handleBlogDeleteBtnClick(blog.postId)}>delete</button>
+                                </div>
+
                             </div>
                         </li>)
                     })}
                 </ul>
             </div>
-           <form onSubmit={handleSubmitBlogEdit}>
-                <label>
-                    <span>title</span>
-                    <input type="text" name="title" value={title} onChange={handleTitleChange}/>
-                </label>
-                <label>
-                    <span>Body</span>
-                    <textarea value={body} onChange={handleBodyChange}/>
-                </label>
-            </form>
             <div>
                 {deleteConfirmation && <div><span>are u sure?</span> <button type="button">delete</button></div>}
             </div>

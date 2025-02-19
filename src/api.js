@@ -103,6 +103,16 @@ const sendFeedback = async ({ email, message }) => {
 }
 //get-upload-url
 
+const getFeedbackById = async ({ feedbackId }) => {
+    try { 
+        const res = await axios.get(`/feedback/${feedbackId}`)
+        return res
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
 const getCloudinaryUploadUrl = async () => {
     try {
         const res = await axios.get("/poetry/get-upload-url")
@@ -207,4 +217,4 @@ const getBlogById = async ({ postId }) => {
     }
 }
 
-export default { getVisitData, getInbox, sendVisit, sendFeedback, postBlog, getCloudinaryUploadUrl, postImgToCloudinary, addPoetry, getPoetry, signIn, getCurrent, getBlog, getBlogById, postPdfToCloudinary, getPoetryById, editPoetry, deletePoetry }
+export default { getVisitData, getInbox, sendVisit, sendFeedback, postBlog, getCloudinaryUploadUrl, postImgToCloudinary, addPoetry, getPoetry, signIn, getCurrent, getBlog, getBlogById, postPdfToCloudinary, getPoetryById, editPoetry, deletePoetry, getFeedbackById }

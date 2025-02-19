@@ -1,5 +1,6 @@
 import { useState, useEffect, use } from "react"
 import api from "api"
+import css from './editPoetryForm.module.css'
 
 
 const EditPoetryForm = () => {
@@ -139,36 +140,23 @@ const EditPoetryForm = () => {
 
 
     return (
-        <div>
-            <div>
-                <ul>
-                    {poetryList && poetryList.map((poetry, i) => {
-                        return (<li key={poetry.poetryId}>
-                            <div>
-                                <span>{poetry.name}</span>
-                                <button type="button" onClick={() => handlePoetryEditBtnClick(poetry.poetryId)}>edit</button>
-                                <button type="button" onClick={() => handlePoetryDeleteBtnClick(poetry.poetryId)}>delete</button>
-                            </div>
-                        </li>)
-                    })}
-                </ul>
-            </div>
-
-            <form onSubmit={handleSubmitPoetryEdit}>
-                <label>
+        <div className={`${css.container} ${css.fadeIn}`} >
+            <div className={css.formCover}>
+                <form className={css.form} onSubmit={handleSubmitPoetryEdit}>
+                <label className={css.label}>
                     <span>title</span>
                     <input type="text" name="title" value={title} onChange={handleTitleChange}/>
                 </label>
-                <label>
+                <label className={css.label}>
                     <span>about</span>
-                    <textarea value={about} onChange={handleAboutChange}/>
+                    <textarea className={css.textarea} value={about} onChange={handleAboutChange}/>
                 </label>
-                <label>
+                <label className={css.label}>
                     <span>cover</span>
                     <input type="file" onChange={handleFileChange}/>
                     {imgUrl && <img src={imgUrl} alt="Preview" style={{ width: "200px", margin: "10px 0" }} />}
                 </label>
-                <label>
+                <label className={css.label}>
                     <span>file</span>
                     <input type="file" onChange={handlePdfChange} />
                 </label>
@@ -176,6 +164,23 @@ const EditPoetryForm = () => {
             </form>
             <div>
                 {deleteConfirmation && <div><span>are u sure?</span> <button type="button">delete</button></div>}
+                </div>
+            </div>
+            <div>
+                <ul className={css.ul}>
+                    {poetryList && poetryList.map((poetry, i) => {
+                        return (<li className={css.li} key={poetry.poetryId}>
+                            <div className={css.liCard}>
+                                <span>{poetry.name}</span>
+                                <div className={css.controls}>
+                                    <button className={css.editBtn} type="button" onClick={() => handlePoetryEditBtnClick(poetry.poetryId)}>edit</button>
+                                    <button className={css.deleteBtn} type="button" onClick={() => handlePoetryDeleteBtnClick(poetry.poetryId)}>delete</button>
+                                </div>
+                                
+                            </div>
+                        </li>)
+                    })}
+                </ul>
             </div>
         </div>
     )

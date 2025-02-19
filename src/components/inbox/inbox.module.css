@@ -1,0 +1,80 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+.fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.container {
+    height: 650px;
+    display: flex;
+    gap: 30px;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-bottom: 10px;
+}
+
+.ul {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+        /* min-height: 70%;
+        max-height: 70%; */
+        overflow-y: auto;
+        width: 450px;
+            background-color: white;
+            border: 1px solid grey;
+            border-radius: 5px;
+}
+
+.feedbackBtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border: 0px;
+    border-bottom: 1px solid grey;
+    height: 70px;
+    width: 100%;
+}
+
+.feedbackViewer {
+    padding: 5px;
+    min-height: 600px;
+    max-height: 600px;
+    overflow-y: auto;
+    width: 600px;
+    border: 1px solid grey;
+    border-radius: 5px;
+
+}
+
+/* .feedbackBtnContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+} */
+
+.email {
+    padding-bottom: 3px;
+    border-bottom: 1px solid grey;
+}
+
+.unopenedFeedback {
+    box-shadow: inset -10px 0 10px -5px rgba(0, 0, 255, 0.5);
+}
+
+.openedFeedback {
+    box-shadow: inset -10px 0 10px -5px rgba(113, 113, 127, 0.5);
+}
